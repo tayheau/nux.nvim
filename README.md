@@ -1,8 +1,9 @@
-# nux.nvim - A neovim mutliplexer
+# nux.nvim - a neovim mutliplexer
 
 ## Multiplexer inside nvim giving you control on your workspaces.
->[!IMPORTANT] WIP - Contributions and stars are welcome ! 
-> Checkout the [TODO](#todo) section for upcoming features.
+
+> ⚠️ **Work in Progress** – Contributions and stars are welcome!  
+> Check out the [TODO](#todo) section for upcoming features.
 ---
 
 ## Table of Contents
