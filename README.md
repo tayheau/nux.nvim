@@ -44,7 +44,7 @@ vim.pack.add(
 ```
 ~/Foo/bar far.c term
 ```
--- `term` opens a terminal in that tab.
+> `term` opens a terminal in that tab.
 2. __Open the project picker__: select the project using `:Nux pickprojects` and let nux.nvim arrange your workspace automatically.
 3. __Tabs__: Tabs will be named smartly based on your project, keeping your workspace organized.
 
