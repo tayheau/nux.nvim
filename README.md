@@ -11,7 +11,7 @@ Multiplexer inside nvim giving you control on your workspaces.
 > See how to install [here](# Installation)
 ---
 
-<video src="./nux_demo.mov" width="320" height="240" controls></video>
+[](https://github.com/user-attachments/assets/04810905-0a3d-42e5-8a4a-2e7beeaaf9e2)
 
 ---
 
