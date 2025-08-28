@@ -5,7 +5,9 @@
 ⚠️ **Work in Progress** – Contributions and stars are welcome!  
 > Check out the [TODO](#todo) section for upcoming features.
 ---
+[](https://github.com/user-attachments/assets/04810905-0a3d-42e5-8a4a-2e7beeaaf9e2)
 
+---
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
@@ -15,9 +17,7 @@
 
 ---
 
-[](https://github.com/user-attachments/assets/04810905-0a3d-42e5-8a4a-2e7beeaaf9e2)
 
----
 ## Features
 - __Project Picker__: Quickly switch between projects.
 - __Custom Project Layouts__: Define project roots and specify which files open in a new tab. Tabs open files in a spiral layout.
