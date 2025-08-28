@@ -2,7 +2,7 @@
 
 ## Multiplexer inside nvim giving you control on your workspaces.
 
-> ⚠️ **Work in Progress** – Contributions and stars are welcome!  
+⚠️ **Work in Progress** – Contributions and stars are welcome!  
 > Check out the [TODO](#todo) section for upcoming features.
 ---
 
