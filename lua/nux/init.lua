@@ -1,14 +1,10 @@
 local Nux = {}
 local H = {}
 
---@param opts table
+local Config = require("nux.config")
+
 Nux.setup = function(opts)
-	opts = opts or {} -- if opts is nil, use an empty table
-	-- opts.statusline = opts.statusline ~= false
-	-- if opts.statusline then
-	-- 	_G.Nux = Nux
-	-- 	vim.go.tabline = "%!v:lua.Nux.customTabLine()"
-	-- end
+	Config.setup(opts)
 end
 
 ---@class nux.FloatingWindow
@@ -36,12 +32,12 @@ H.create_window_configuration = function(title)
 	---@type  vim.api.keyset.win_config
 	return {
 		relative = "editor",
-		width = math.ceil(width / 3),
-		height = math.ceil(height / 4),
+		width = math.ceil(width * Config.options.width_ratio),
+		height = math.ceil(height * Config.options.height_ratio),
 		style = "minimal",
-		border = "double",
-		col = (width - math.ceil(width / 3)) / 2,
-		row = (height - math.ceil(height / 4)) / 2,
+		border = Config.options.border,
+		col = (width - math.ceil(width * Config.options.width_ratio)) / 2,
+		row = (height - math.ceil(height * Config.options.height_ratio)) / 2,
 		zindex = 1,
 		title = { { title or "", "NormalFloat" } },
 		title_pos = "center",
@@ -58,7 +54,7 @@ local local_options_buf = {
 ---@type vim.wo
 local local_options_win = {
 	cul = true,
-	winhighlight = "CursorLine:CurSearch"
+	winhighlight = Config.options.winhighlight
 }
 
 

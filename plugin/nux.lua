@@ -1,34 +1,14 @@
-CustomTabLine = function()
-	local tabline = ""
-	for index = 1, vim.fn.tabpagenr('$') do
-		-- select the highlighting
-		if index == vim.fn.tabpagenr() then
-			tabline = tabline .. '%#TabLineSel#'
-		else
-			tabline = tabline .. '%#TabLine#'
-		end
+vim.api.nvim_create_autocmd("VimEnter",
+	{
+		group = vim.api.nvim_create_augroup("nuxstart", { clear = true }),
+		callback = function()
+			if require("nux.config").options.tabline then
+				_G.ui = require("nux.ui")
+				vim.go.tabline = "%!v:lua.ui.customTabLine()"
+			end
+		end,
+	})
 
-		-- set the tab page number (for mouse clicks)
-		tabline = tabline .. '%' .. index .. 'T'
-
-		local win_num = vim.fn.tabpagewinnr(index)
-		local working_directory = vim.fn.getcwd(win_num, index)
-		local project_name = vim.fn.fnamemodify(working_directory, ":t")
-		tabline = tabline .. " " .. project_name .. " "
-	end
-
-	-- after the last tab fill with TabLineFill and reset tab page nr
-	tabline = tabline .. '%#TabLineFill#%T'
-	--
-	-- -- right-align the label to close the current tab page
-	-- if vim.fn.tabpagenr('$') > 1 then
-	-- 	tabline = tabline .. '%=%#TabLine#%999Xclose'
-	-- end
-
-	return tabline
-end
-
-vim.go.tabline = "%!v:lua.CustomTabLine()"
 --- Thanks to `nvim-best-practices` ;)
 ---
 ---@class NuxSubCmd
@@ -79,8 +59,3 @@ vim.api.nvim_create_user_command("Nux", nux_cmd, {
 	end,
 	bang = true
 })
-
--- vim.api.nvim_create_user_command('PickProjects', function()
--- 	require("nux").select_project()
--- end, {}
--- )
