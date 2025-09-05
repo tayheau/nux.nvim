@@ -69,3 +69,4 @@ vim.keymap.set('n', '<leader>p', ':Nux pickprojects<CR>')
     - 1st LEXING : split into tokens
     - 2nd PARSING: understanding thoses tokens
     - 3rd BUILDING : return a comprehensive list of instructions (dict root, files)
+- at the moment the tabline is dynamycaly computed by ui.customTabLine what should be done is to just keep a table that could be modified instead of computing it each time
