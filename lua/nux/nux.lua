@@ -179,7 +179,7 @@ end), false)
 vim.o.guicursor = "a:NuxCursor"
 local titles = {}
 local project_keys = {}
-local projects = load_projects("./projects.json")
+local projects = H.load_projects("./projects.json")
 for k, v in pairs(projects) do
 	local centered_title = k .. string.rep(" ", vim.api.nvim_win_get_width(side_bar_float.win) - #k - 3) .. "[L]"
 	table.insert(titles, centered_title)
