@@ -1,0 +1,4 @@
+#some toml logic
+[nvim dotfiles]
+root = "~/.config/nvim"
+files = ["init.lua"]
