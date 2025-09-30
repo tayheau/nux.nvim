@@ -51,7 +51,7 @@ end
 
 -- TODO: check if a window is already open to prevent multiple ones
 Nux.pickWorkspace = function()
-	local picker = H.create_nux_window({title = " Pick a project "})
+	local picker = H.create_nux_window({ title = " Pick a project " })
 	H.cache.cursor = vim.o.guicursor
 	vim.o.guicursor = "a:NuxCursor"
 	vim.wo[picker.win].cursorline = true
@@ -68,9 +68,9 @@ Nux.pickWorkspace = function()
 	})
 
 	vim.keymap.set("n", Nux.config.key_mappings.quit, function()
-		vim.api.nvim_win_close(picker.win, true)
-	end,
-	{ buffer = picker.buf }
+			vim.api.nvim_win_close(picker.win, true)
+		end,
+		{ buffer = picker.buf }
 	)
 
 	vim.api.nvim_create_autocmd("CursorMoved", {
@@ -79,7 +79,8 @@ Nux.pickWorkspace = function()
 			local key = project_keys[idx]
 			if not key then return end
 			current_project_key = key
-		end})
+		end
+	})
 
 	vim.keymap.set("n", H.get_config().key_mappings.select, function()
 			vim.api.nvim_win_close(picker.win, true)
@@ -102,7 +103,7 @@ end
 
 Nux.editWorkspace = function()
 	local buf = vim.fn.bufnr(H.get_path(), true)
-	local win = vim.api.nvim_open_win(buf, true, H.get_window_config() )
+	local win = vim.api.nvim_open_win(buf, true, H.get_window_config())
 end
 -- Helper --------------------------------------------------------------
 -- Setup and Checks ----------------------------------------------------
@@ -140,8 +141,13 @@ end
 -- TODO to update maybe
 H.setup_autocmds = function()
 	local nux_augroup = vim.api.nvim_create_augroup("nux_augroup", { clear = true })
+	local nux_autocmd = function(event, callback)
+		vim.api.nvim_create_autocmd(event, { group = nux_augroup, callback = callback })
+	end
 
-	vim.api.nvim_create_autocmd("WinResized", { group = nux_augroup, callback = Nux.refresh })
+	nux_autocmd("WinResized", Nux.refresh)
+	-- Since plugin is sourced before colorschemes and thoses can wipe any defined highlights.
+	nux_autocmd("ColorScheme", H.setup_hl)
 end
 
 ---@param win_config? vim.api.keyset.win_config|function The function must return a `vim.api.keyset.win_config` table
@@ -151,9 +157,9 @@ H.get_window_config = function(win_config)
 	local local_height = vim.o.lines - vim.o.cmdheight - (has_statusline and 1 or 0)
 	local default_config = {
 		relative = "editor",
-		width = math.floor(.52 *  local_width),
+		width = math.floor(.52 * local_width),
 		height = math.floor(.52 * local_height),
-		col = (local_width - math.floor(.52 *  local_width)) / 2,
+		col = (local_width - math.floor(.52 * local_width)) / 2,
 		row = (local_height - math.floor(.52 * local_height)) / 2,
 		border = "single",
 		style = "minimal",
@@ -169,7 +175,7 @@ H.create_floating_window = function(config, enter)
 	local enter_win = (enter == nil) and true or enter
 	local buf = vim.api.nvim_create_buf(false, true)
 	local win = vim.api.nvim_open_win(buf, enter_win, final_config)
-	return { buf = buf, win = win, config = config}
+	return { buf = buf, win = win, config = config }
 end
 
 ---@param win_config? vim.api.keyset.win_config
@@ -244,9 +250,11 @@ end
 
 --
 H.cache = {}
-H.window = {active = nil}
+H.window = { active = nil }
 H.default_config = vim.deepcopy(Nux.config)
 
-Nux.setup()
 
-Nux.pickWorkspace()
+return Nux
+
+-- Nux.setup()
+-- Nux.pickWorkspace()

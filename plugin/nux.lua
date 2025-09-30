@@ -1,14 +1,14 @@
-vim.api.nvim_create_autocmd("VimEnter",
-	{
-		group = vim.api.nvim_create_augroup("nuxstart", { clear = true }),
-		callback = function()
-			if require("nux.config").options.tabline then
-				_G.ui = require("nux.ui")
-				vim.go.tabline = "%!v:lua.ui.customTabLine()"
-			end
-		end,
-	})
-
+-- vim.api.nvim_create_autocmd("VimEnter",
+-- 	{
+-- 		group = vim.api.nvim_create_augroup("nuxstart", { clear = true }),
+-- 		callback = function()
+-- 			if require("nux.config").options.tabline then
+-- 				_G.ui = require("nux.ui")
+-- 				vim.go.tabline = "%!v:lua.ui.customTabLine()"
+-- 			end
+-- 		end,
+-- 	})
+--
 --- Thanks to `nvim-best-practices` ;)
 ---
 ---@class NuxSubCmd
@@ -17,9 +17,9 @@ vim.api.nvim_create_autocmd("VimEnter",
 
 ---@type table<string, NuxSubCmd>
 local subcommand_tbl = {
-	pickprojects = {
+	pickworkspace = {
 		impl = function(args, opts)
-			require("nux").select_project()
+			require("nux").pickWorkspace()
 		end,
 	}
 }
